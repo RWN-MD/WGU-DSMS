@@ -1,7 +1,5 @@
 # Data Analytics Life Cycle and Analytics Strategy for Healthcare Performance Improvement  
 
-![Data Analytics Life Cycle](https://via.placeholder.com/800x300.png?text=Data+Analytics+Life+Cycle)
-
 ## Introduction
 
 In this document, I outline my approach to employing the data analytics life cycle in healthcare settings to tackle real-world challenges impacting health systems. As a medical doctor with a background in education and research, I've had the opportunity to blend my clinical perspective with data-driven analyses, exploring issues such as optimizing patient outcomes, patient satisfaction, and resource allocation. The following sections detail my structured analytics plan, reflections on personal growth, and practical examples drawn from my healthcare analytics projects.
