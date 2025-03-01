@@ -112,3 +112,10 @@ The concepts and analytic approaches presented here are based on my training as 
 Bridging healthcare experience with the structured data analytics life cycle, this document illustrates my approach for leveraging analytic tools to address healthcare delivery challenges related to patient satisfaction and clinical performance. By reflecting on my experiences, outlining personal growth strategies, and applying methods relevant to clinical contexts, I contribute to healthcare’s data-driven innovation and continuous improvement.
 
 I remain committed to furthering my expertise, utilizing ethical practices, and continuously developing analytics that not only inform better healthcare operations, but also foster compassionate, patient-centered care and improved clinical outcomes.
+
+---
+
+**References**  
+
+- Smith, J. (2021). *Aligning Analytics with Organizational Goals*. Journal of Business Analytics.
+- Data Science Handbook (2020). *Practical Applications of Predictive Modeling*.
