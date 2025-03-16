@@ -15,7 +15,7 @@ The project includes:
 ├── sql/
 |   ├── 01_create_database.sql    # SQL script to create the database and tables
 |   ├── 02_import_data.sql        # SQL script to import CSV data into the database
-|   ├── 03_test_queries.sql            # SQL script containing business-critical queries
+|   ├── 03_queries.sql            # SQL script containing business-critical queries
 |   └── 04_optimize_queries.sql   # SQL script for query optimization techniques
 └── datasets/
     ├── D597 Task 1 Dataset 1_Fitness_trackers.csv
@@ -33,7 +33,7 @@ The project includes:
    - Adjust file paths if needed, then execute the script to bulk import data from the provided CSV files into the database.
 
 3. **Run Queries:**
-   - Open the `03_test_queries.sql` file.
+   - Open the `03_queries.sql` file.
    - Execute the queries to extract insights that address the business problem (e.g., linking device usage with patient outcomes).
 
 4. **Optimize Performance:**
