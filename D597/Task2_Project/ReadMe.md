@@ -54,4 +54,3 @@ D597/Task2_Project/
 ## Contact
 
 For any questions or additional information, please contact Russell Nordquist at rnordq2@my.wgu.edu.
-"""
