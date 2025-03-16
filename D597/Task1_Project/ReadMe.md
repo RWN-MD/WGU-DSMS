@@ -9,7 +9,7 @@ The project includes:
 
 ## Project Directory Structure
 ~~~
-/D597_Task1_Project/
+/D597/Task1_Project/
 ├── README.md                     # This file: project overview and instructions
 ├── DESIGN_DOCUMENT.md            # Detailed design document outlining the solution
 ├── sql/
