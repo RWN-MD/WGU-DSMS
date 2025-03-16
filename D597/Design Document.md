@@ -1,108 +1,172 @@
-# Design Document
+# HealthFit Innovations: HealthTrack Database Design and Implementation
 
-## A. Scenario Selection and Business Problem
-
-### 1. Business Problem
-HealthFit Innovations is developing the HealthTrack platform to integrate data from various sources, including wearable fitness devices and patient medical records. Currently, the growing volume and variety of health data (e.g., device information, patient demographics, clinical history) are causing performance bottlenecks and data silos in the existing system. These challenges hinder the platform’s ability to provide real-time health insights, personalized recommendations, and proactive patient care.
-
-### 2. Proposed Data Structure
-A relational database solution is proposed to consolidate and normalize data from two key datasets:
-
-1. **FitnessTrackers** (from **D597 Task 1 Dataset 1_Fitness_trackers**)
-2. **MedicalRecords** (from **D597 Task 1 Dataset 3_medical_records**)
-
-By storing device information (brand, model, pricing, and ratings) alongside patient clinical data (name, medical conditions, medications, and allergies), the system can generate more comprehensive health insights.
-
-### 3. Justification for a Database Solution
-- **Centralized Data:** Integrates wearable device information and patient records into a single repository, eliminating silos.
-- **Efficient Queries:** Allows complex queries to correlate device usage (via the “Tracker” field) with patient outcomes or medical conditions.
-- **Data Integrity:** Enforces relationships and constraints, ensuring consistent patient and device data.
-- **Scalability:** Facilitates indexing, partitioning, and distributed deployments to handle expanding data volumes.
-
-### 4. Use of Business Data Within the Database
-- **Device-Patient Correlation:** Linking “Tracker” in the medical records to specific device models helps analyze how different trackers influence or correlate with patient outcomes.
-- **Performance & Trend Analysis:** Combining brand, rating, and average battery life with patient usage patterns can reveal trends in device efficacy and user satisfaction.
-- **Clinical Decision Support:** Access to up-to-date patient medical information (conditions, medications, allergies) alongside device data enables more personalized health recommendations.
+This document outlines the design, implementation, and presentation plan for a relational database solution aligned with the HealthFit Innovations scenario. The solution addresses HealthTrack’s need to efficiently store, manage, and analyze diverse health-related data from wearable devices and electronic health records (EHRs).
 
 ---
 
-## B. Logical Data Model
+## Part 1: Design Document
 
-### 1. FitnessTrackers Table
-- **Table Name:** `FitnessTrackers`
-- **Columns:**
-  1. `Brand Name`
-  2. `Device Type`
-  3. `Model Name`
-  4. `Color`
-  5. `Selling Price`
-  6. `Original Price`
-  7. `Display`
-  8. `Rating (Out of 5)`
-  9. `Strap Material`
-  10. `Average Battery Life (in days)`
-  11. `Reviews`
+### A. Business Problem and Proposed Data Structure
 
-### 2. MedicalRecords Table
-- **Table Name:** `MedicalRecords`
-- **Columns:**
-  1. `patient_id`
-  2. `name`
-  3. `date_of_birth`
-  4. `gender`
-  5. `medical_conditions`
-  6. `medications`
-  7. `allergies`
-  8. `last_appointment_date`
-  9. `Tracker`
+#### A1. Business Problem
 
-### 3. Relationships
-- **MedicalRecords to FitnessTrackers:**
-  - The `Tracker` column in `MedicalRecords` can link to a corresponding column in `FitnessTrackers`—for example, the `Model Name`. This relationship helps correlate which device a patient is using with their medical data.
-  - If necessary, introduce a bridging table or surrogate keys if there is no direct 1:1 match between `Tracker` and `Model Name`.
+HealthFit Innovations’ HealthTrack platform integrates data from various sources (e.g., wearable devices, EHRs). The current database system struggles with:
+- **High data volume** leading to performance bottlenecks.
+- **Data silos** preventing unified analytics.
+- **Limited scalability** to handle real-time data influx.
 
----
+Without a robust solution, HealthTrack cannot efficiently provide real-time monitoring and personalized health insights. A scalable relational database is needed to integrate and query data rapidly.
 
-## C. Database Objects and Storage
+#### A2. Proposed Data Structure
 
-**Database Objects:**
-- **Tables:**
-  - `FitnessTrackers` for device data
-  - `MedicalRecords` for patient clinical data
-- **Indexes:**
-  - Primary and/or composite keys (e.g., `Model Name` in `FitnessTrackers`, `patient_id` in `MedicalRecords`)
-  - Additional indexes on frequently searched columns (e.g., `Brand Name`, `Tracker`)
-- **Constraints:**
-  - Foreign key constraints if `Tracker` maps directly to `Model Name`
-- **Views:**
-  - For joining patient info and device info, e.g., `PatientDeviceView`
-- **Stored Procedures/Functions:**
-  - For importing data from the provided CSV/Excel files
-  - For common queries (e.g., retrieving patient data by device brand or model)
+A relational schema is proposed to capture core entities:
+1. **Patient**: Stores demographic and clinical data.
+2. **Device**: Tracks information about wearable devices.
+3. **HealthMetric**: Logs wearable data (heart rate, steps, etc.).
+4. **EHR_Record**: Contains medical data from patient visits.
+5. **PatientReportedOutcome**: Stores patient-submitted health information.
 
-**Storage Considerations:**
-- Data is stored via the DBMS’s file structures (file groups or tablespaces).
-- Column data types align with the actual data (numeric for prices, date for `date_of_birth`, etc.).
-- Proper sizing ensures efficient storage and performance.
+Each entity will have a primary key (e.g., `patient_id` for Patient). Foreign keys (e.g., `patient_id` in EHR_Record) ensure data integrity and enable efficient joins.
+
+#### A3. Justification for a Database Solution
+
+- **Data Integrity**: Relational constraints maintain consistency across tables.
+- **Scalable Queries**: Indexes and normalization optimize performance for high data volumes.
+- **Real-Time Analytics**: A well-designed schema supports quick insights and predictive modeling.
+- **Integration**: Relational databases simplify merging diverse datasets, including wearable and EHR data.
+
+#### A4. Usage of Business Data
+
+- **Real-Time Monitoring**: Queries on HealthMetric detect abnormal vitals.
+- **Personalized Recommendations**: Joining EHR_Record and HealthMetric tables yields insights for individualized care.
+- **Clinical Decision Support**: Aggregated data informs treatment plans.
+- **Reporting and Dashboards**: Summaries of device usage, patient outcomes, and health trends guide strategic decisions.
 
 ---
 
-## D. Scalability Considerations
+### B. Logical Data Model
 
-- **Normalization:** Minimizes redundancy by separating device data from medical records.
-- **Indexing:** Speeds up lookups on key fields like `patient_id`, `Model Name`, and `Tracker`.
-- **Partitioning:** Useful for large tables, potentially partitioning by `last_appointment_date` or similar.
-- **Distributed Architecture:** The database can be replicated or sharded to handle large read/write loads.
-- **Cloud Deployment:** Hosting on a cloud DB service allows dynamic resource scaling.
+Below is a conceptual outline of the primary entities and their relationships:
+
+1. **Patient**  
+   - `patient_id` (PK)  
+   - `first_name`  
+   - `last_name`  
+   - `date_of_birth`  
+   - `gender`  
+   - `contact_info`
+
+2. **Device**  
+   - `device_id` (PK)  
+   - `patient_id` (FK)  
+   - `device_type`  
+   - `manufacturer`  
+   - `registration_date`
+
+3. **HealthMetric**  
+   - `metric_id` (PK)  
+   - `device_id` (FK)  
+   - `metric_type`  
+   - `metric_value`  
+   - `timestamp`
+
+4. **EHR_Record**  
+   - `record_id` (PK)  
+   - `patient_id` (FK)  
+   - `diagnosis`  
+   - `treatment`  
+   - `visit_date`
+
+5. **PatientReportedOutcome**  
+   - `outcome_id` (PK)  
+   - `patient_id` (FK)  
+   - `reported_metric`  
+   - `comments`  
+   - `report_date`
+
+In the final implementation, a surrogate key (e.g., `tracker_id`) may be introduced for any dataset lacking a suitable primary key (e.g., fitness trackers).
 
 ---
 
-## E. Privacy and Security Measures
+### C. Database Objects and Storage
 
-- **Encryption:** Sensitive patient information is encrypted at rest and in transit.
-- **Access Control:** Role-based access control (RBAC) ensures only authorized healthcare personnel can view or modify patient data.
-- **Authentication:** Enforces strong password policies and multi-factor authentication (MFA).
-- **Audit Logging:** Monitors data access, updates, and deletions for compliance and security.
-- **Regulatory Compliance:** Aligns with healthcare regulations (e.g., HIPAA) to protect patient confidentiality.
-- **Network Security:** Secure protocols (SSL/TLS), firewalls, and VPNs protect data in transit.
-- **Backups and Recovery:** Automated backups and disaster recovery plans minimize data loss.
+1. **Tables**: Each entity above will be stored in a separate table, enforcing primary and foreign keys.
+2. **Views**: Could be created for common join operations (e.g., a view combining `Patient` and `EHR_Record` for quick clinical data access).
+3. **Indexes**:  
+   - Primary keys ensure clustering indexes on each table.  
+   - Additional indexes on frequently queried columns (e.g., `timestamp` in `HealthMetric`) improve performance.
+4. **Storage Files**:  
+   - Data files hold structured table data.  
+   - Transaction logs maintain a record of changes for recovery and auditing.  
+   - Backup files are regularly generated for disaster recovery.
+
+---
+
+### D. Scalability Concerns
+
+- **Partitioning**: Tables with high volumes (e.g., `HealthMetric`) can be partitioned by date or device.
+- **Indexing Strategy**: Selective indexing ensures fast read performance without excessive overhead.
+- **Replication**: Replicating the database across multiple nodes may be considered if real-time read demands grow.
+- **Sharding (Future)**: For extremely large datasets, sharding by patient region or device type can be explored.
+
+---
+
+### E. Privacy and Security Measures
+
+1. **Compliance**: Adhere to HIPAA and relevant data protection standards.
+2. **Encryption**: Encrypt sensitive data at rest (e.g., medical data) and in transit (SSL/TLS).
+3. **Access Controls**: Implement role-based access (RBAC) to restrict user permissions.
+4. **Audit Logging**: Track all data access and modifications for accountability.
+5. **Regular Security Audits**: Periodically evaluate vulnerabilities, patch known risks, and update policies.
+
+---
+
+## Part 2: Implementation
+
+### F. Implementation Steps
+
+1. **Database Creation**  
+   - Write and execute a script to create a new database instance named `D597 Task 1`.
+   - Provide a screenshot showing successful creation.
+
+2. **Data Import**  
+   - Use `LOAD DATA INFILE`, `COPY`, or an equivalent bulk-import command to load CSV records into the corresponding tables.
+   - Provide a screenshot confirming correct data insertion.
+
+3. **Queries to Retrieve Information**  
+   - Write three queries addressing the core business problem (e.g., identifying patients with abnormal health metrics, generating real-time health insights).
+   - Show each query script and its successful execution output.
+
+4. **Optimization Techniques**  
+   - Apply indexing or query rewriting to enhance performance.
+   - Provide screenshots or metrics showing improved run times.
+
+---
+
+## Part 3: Presentation
+
+### G. Presentation Walk-Through
+
+1. **Recorded Demonstration**  
+   - Create a Panopto video featuring a walkthrough of your functional database solution.  
+   - Show yourself and your on-screen environment, explaining how your schema and queries meet the project objectives.
+
+2. **Key Demonstration Points**  
+   - **Performance Optimization**: Discuss how indexing strategies and database design improve query speed.  
+   - **Technical Environment**: Describe the DBMS version, OS, and relevant tools.  
+   - **Query Functionality**: Run each of the three queries, explaining how they solve the identified business problem.  
+   - **Scalability**: Briefly mention how partitioning or replication could be leveraged if user data scales further.
+
+---
+
+## H. Acknowledgments
+
+No external sources are quoted directly. Any general database best practices referenced are based on common industry knowledge. If additional external sources are used in your final submission, include them here in a standard citation format (e.g., APA or MLA).
+
+---
+
+## I. Professional Communication
+
+All written material follows professional standards, avoiding spelling or grammar errors and maintaining a clear, organized structure. Screenshots, code snippets, and supporting visuals will be included in the final submission to demonstrate each requirement step.
+
+---
