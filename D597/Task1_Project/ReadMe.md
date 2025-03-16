@@ -18,8 +18,8 @@ The project includes:
 |   ├── 03_queries.sql            # SQL script containing business-critical queries
 |   └── 04_optimize_queries.sql   # SQL script for query optimization techniques
 └── datasets/
-    ├── D597 Task 1 Dataset 1_Fitness_trackers.csv
-    └── D597 Task 1 Dataset 3_medical_records.csv
+    ├── D597 Task 1 Dataset 1_Fitness_trackers.csv # CSV file containing fitness tracker data
+    └── D597 Task 1 Dataset 3_medical_records.csv # CSV file containing patient data
 ~~~
 
 ## How to Run the Project
