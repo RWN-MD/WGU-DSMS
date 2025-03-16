@@ -8,7 +8,14 @@ The project includes:
 - SQL scripts for creating the database, importing data, executing queries, and optimizing query performance.
 
 ## Project Directory Structure
-/D597_Task1_Project │ ├── README.md # This file: project overview and instructions ├── DESIGN_DOCUMENT.md # Detailed design document outlining the solution └── sql ├── 01_create_database.sql # SQL script to create the database and tables ├── 02_import_data.sql # SQL script to import CSV data into the database ├── 03_queries.sql # SQL script containing business-critical queries └── 04_optimize_queries.sql# SQL script for query optimization techniques
+/D597_Task1_Project/
+├── README.md                     # This file: project overview and instructions
+├── DESIGN_DOCUMENT.md            # Detailed design document outlining the solution
+└── sql/
+    ├── 01_create_database.sql    # SQL script to create the database and tables
+    ├── 02_import_data.sql        # SQL script to import CSV data into the database
+    ├── 03_queries.sql            # SQL script containing business-critical queries
+    └── 04_optimize_queries.sql   # SQL script for query optimization techniques
 
 ## How to Run the Project
 
