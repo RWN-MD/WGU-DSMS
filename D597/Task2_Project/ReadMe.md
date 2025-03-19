@@ -18,7 +18,7 @@ D597/Task2_Project/
 |   ├── 03_queries.js # Script containing business-critical queries
 |   └── 04_optimize_queries.js # Script for query optimization techniques
 └── datasets/
-    ├── medical.json # JSON file containing patient data
+    ├── OMITTED due to size (medical.json # JSON file containing patient data)
     └── Task2Scenario1_Dataset1_fitness_trackers.json # JSON file containing fitness tracker data
 ~~~
 
