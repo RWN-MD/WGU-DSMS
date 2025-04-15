@@ -1,6 +1,6 @@
 # D597 Task 1 Project
 
-## Overview
+## Overview 
 This project implements a relational database solution for HealthFit Innovations' HealthTrack platform. The solution is designed to efficiently store, manage, and analyze diverse health-related data from wearable devices and electronic health records (EHRs).
 
 The project includes:
