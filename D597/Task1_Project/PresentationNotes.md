@@ -1,5 +1,5 @@
 1. Introduction & Context
-"Hi, I’m [Your Name], and this presentation walks through my implementation of Task 1 from the D597 Data Management course.
+"Hi, I’m Russell Nordquist, and this presentation walks through my implementation of Task 1 from the D597 Data Management course.
 
 The scenario centers around HealthFit Innovations, which is building a platform called HealthTrack. This platform collects diverse healthcare data — such as wearable device metrics, EHR records, and patient-reported outcomes — with the goal of supporting improved health management.
 
