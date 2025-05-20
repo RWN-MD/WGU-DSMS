@@ -102,9 +102,3 @@ To protect sensitive health data, the following measures will be implemented:
 - No external sources have been directly quoted; all references are based on standard industry knowledge.
 
 ---
-
-## Professional Communication
-
-All documentation, screenshots, and the presentation video adhere to professional standards, with clear communication and a well-organized structure. The final submission will include all required elements, ensuring the solution is effectively demonstrated.
-
----
