@@ -1,6 +1,6 @@
 # 🎥 Panopto Presentation Script: D597 Task 1 — HealthTrack Database Implementation
 
-**Presenter:** [Your Name]  
+**Presenter:** Russell Nordquist
 **Course:** WGU D597 — Data Management  
 **Task:** MKN1 Task 1 — Relational Database Design and Implementation  
 **Scenario:** HealthFit Innovations – HealthTrack Platform
