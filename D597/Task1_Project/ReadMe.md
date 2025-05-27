@@ -55,4 +55,4 @@ The project includes:
 
 ## Contact
 
-For any questions or additional information, please contact Russell Nordquist at rnordq2@my.wgu.edu.
+For any questions or additional information, please contact Russell Nordquist at rnordq2@wgu.edu.
